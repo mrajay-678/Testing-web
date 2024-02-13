@@ -77,7 +77,7 @@
   </style>
   <body>
     <video
-      src="https://www.himmalehspirits.com/assets/vids/himmalehstory.mp4"
+      src=""
       autoplay
       playsinline
       loop
@@ -122,12 +122,21 @@
   </body>
   <script>
     if (window.innerWidth >= 768) {
-      //   document.querySelector("video").src = "https://ronaktwo.s3.ap-south-1.amazonaws.com/1aa830ea-Stripe_Chaser_Teaser.mp4";
+      document.querySelector("video").src = "https://ronaktwo.s3.ap-south-1.amazonaws.com/1aa830ea-Stripe_Chaser_Teaser.mp4";
     } else {
       document.querySelector("video").src = "https://ronaktwo.s3.ap-south-1.amazonaws.com/Himmaleh_0a.mp4";
     }
-    setTimeout(() => {
-      document.querySelector("video").play();
-    }, 100);
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var video = document.querySelector("video");
+
+      video.addEventListener("loadeddata", function () {
+        video.play();
+      });
+
+      video.play().catch(function (error) {
+        console.error("Error playing the video:", error);
+      });
+    });
   </script>
 </html>
